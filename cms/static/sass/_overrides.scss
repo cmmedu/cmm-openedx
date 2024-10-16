@@ -1,3 +1,46 @@
+@font-face {
+  font-family: 'Avenir Heavy';
+  src: url('../fonts/Avenir-Heavy.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir Regular';
+  src: url('../fonts/Avenir-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir Black';
+  src: url('../fonts/Avenir-Black.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir Medium';
+  src: url('../fonts/Avenir-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Sassoon Sans Std';
+  src: url('../fonts/SassoonSansStd.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Sassoon Sans Std Bold';
+  src: url('../fonts/SassoonSansStd-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 .nav-not-signedin-signup {
     display: none !important;
 }
