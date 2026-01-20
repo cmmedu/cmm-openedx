@@ -39,17 +39,17 @@ from six import text_type
             <a class="nav-link js-scroll-trigger" href="/faq">Ayuda</a>
         </li>-->
         % if allows_login:
-            <li class="nav-item my-auto mx-1 ml-lg-3 py-1" hidden>
-                <a href="/login?next=/dashboard"><button class="btn btn-login"><i class="fas fa-user-graduate"></i> Ingresar Admin</button></a>
+            <li class="nav-item my-auto mx-1 ml-lg-3 py-1">
+                <a href="/login"><button class="btn btn-login"><i class="fas fa-user-graduate"></i> Ingresar</button></a>
+            </li>
+            <li class="nav-item my-auto mx-1 ml-lg-3 py-1">
+                <a href="/login"><button class="btn btn-login"><i class="fas fa-user-graduate"></i> Ingresar Equipo</button></a>
             </li>
             % if allow_public_account_creation:
               <li class="nav-item my-auto mx-1 ml-lg-3 py-1">
                 <a href="https://mi-cuenta.uchile.cl/crear-cuenta" target="_blank"><button class="btn btn-register"><i class="fas fa-user-plus"></i> Registrar</button></a>
               </li>
             % endif
-            <li class="nav-item my-auto mx-1 ml-lg-3 py-1">
-                <a href="/uchileedxlogin/login/?next=%2Fdashboard"><button class="btn btn-login"><i class="fas fa-user-graduate"></i> Ingresar</button></a>
-            </li>
         %endif
     </ul>
 </div>
