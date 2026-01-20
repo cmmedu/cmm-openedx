@@ -29,111 +29,17 @@
 </%block>
 % endif
 
-<%! from lms.djangoapps.course_info.helpers import get_course_class %>
-<%  cats,course_class = get_course_class(courses) %>
+<%block name="pagetitle">${_("Courses")}</%block>
 
-<% sencecourses = False %>
-% if request.GET.get("cat") == "sence":
-    <% sencecourses = False %> //cuando existan cursos sence poner en True
-% endif
+<main role="main" class="eol-bg w-100 mx-auto" style="background-image: url(${static.url('eol-uchile-2020/images/bg-eol.png')});">
+    <div class="container-fluid eol-content-container py-4 mt-4 mx-auto" style="min-width: auto;">
+        <div class="row eol-courses-list my-4">
+            %for course in courses:
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-4">
+                    <%include file="../course.html" args="course=course" />
+                </div>
+            %endfor
 
-<style>
-    header.courses {
-      background-image: url(${static.url('cmm-openedx/images/header_courses.png')});
-    }
-
-</style>
-
-<!-- Masthead -->
-<header class="masthead courses">
-    <div class="container h-100">
-        <div class="row h-100 align-items-end justify-content-center text-center">
-            <div class="col-lg-10 align-self-end">
-                %if sencecourses:
-                    <h1 class="text-uppercase text-white font-weight-bold wow animated fadeInDown">Cursos Sence</h1>
-                %else:
-                    <h1 class="text-uppercase text-white font-weight-bold wow animated fadeInDown">Cursos</h1>
-                %endif
-                <hr class="divider my-4">
-            </div>
-            <!--<div class="col-lg-8 align-self-baseline">
-                <p class="text-white-75 font-weight-light mb-5 wow animated bounceIn">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
-            </div>-->
-            <div class="col-lg-8 align-self-baseline wow animated infinite pulse slower">
-                <a class="text-white js-scroll-trigger" style="text-decoration: none;" href="#courses">
-					<i class="fas fa-angle-double-down fa-4x"></i>
-				</a>
-            </div>
         </div>
     </div>
-</header>
-
-<main id="main" aria-label="Content" tabindex="-1">
-    <!-- Courses Section -->
-    <section class="page-section" id="courses">
-        <!--
-        <div class="row text-center courses-filter">
-            <div class="mx-auto my-3 wow animated fadeInDown">
-                <button type="button" class="btn btn-xl text-white m-2 filter-button active" data-filter="todos">Todos</button>
-                <button type="button" class="btn btn-xl text-white m-2 filter-button" data-filter="cmm-fpd">Formación Profesional Docente</button>
-                <button type="button" class="btn btn-xl text-white m-2 filter-button" data-filter="cmm-fi">Formación Inicial</button>
-                <button type="button" class="btn btn-xl text-white m-2 filter-button" data-filter="cmm-sence">Sence</button>
-            </div>
-        </div>
-        -->
-        <div class="container">
-            %if not sencecourses:
-                <h2 class="text-center wow animated fadeInDown">Cursos</h2>
-            %else:
-                <h2 class="text-center wow animated fadeInDown">Cursos Sence</h2>
-            %endif
-            <hr class="divider my-4">
-            <div class="row wow animated zoomIn">
-              %for categ in cats:
-              <!-- only Sence -->
-                %if (sencecourses and categ['name'] == "cmm-sence"):
-                    %for course in course_class[categ['id']]['courses']:
-                        <%include file="../course.html" args="course=course, categ=categ" />
-                    %endfor
-                %endif
-              %endfor
-            </div>
-        </div>
-    </section>
 </main>
-
-<script type="text/javascript">
-    $(window).load(function() {
-       // Init animation on scroll
-       new WOW().init();
-      // Smooth scrolling using jQuery easing
-      $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
-          if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-              var target = $(this.hash);
-              target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-              if (target.length) {
-                  $('html, body').animate({
-                      scrollTop: (target.offset().top - 72)
-                  }, 1000, "easeInOutExpo");
-                  return false;
-              }
-          }
-      });
-    })
-
-    $(".filter-button").click(function() {
-        var value = $(this).attr('data-filter');
-        if (value == "todos") {
-            $('.filter').show('3000');
-        } else {
-            $(".filter").not('.' + value).hide('3000');
-            $('.filter').filter('.' + value).show('3000');
-
-        }
-        if ($(".filter-button").removeClass("active")) {
-            $(this).removeClass("active");
-        }
-        $(this).addClass("active");
-        $(this).blur(); // Elimina el focus en el btn
-    });
- </script>

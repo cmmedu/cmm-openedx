@@ -4,6 +4,7 @@
     from django.utils.translation import ugettext as _
     from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
     from openedx.core.djangolib.js_utils import dump_js_escaped_json
+    from urllib.parse import urlencode
 %>
 <%namespace name='static' file='/static_content.html'/>
 
@@ -30,16 +31,30 @@
 </%block>
 
 <%block name="header_extras">
-    % for template_name in ["account", "access", "form_field", "register", "institution_login", "institution_register", "password_reset", "hinted_login", "login"]:
+    % for template_name in ["account", "access", "form_field", "register", "institution_login", "institution_register", "password_reset", "hinted_login"]:
         <script type="text/template" id="${template_name}-tpl">
             <%static:include path="student_account/${template_name}.underscore" />
         </script>
     % endfor
+    <script type="text/template" id="login-tpl">
+        <%static:include path="student_account/login2.underscore" />
+    </script>
 </%block>
 
 <div class="section-bkg-wrapper">
+    <style>
+        .login-button2{
+            background:url("${static.url('cmm-openedx/images/cuenta_pasaporte.jpg')}");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            height: 70px;
+            margin-top: 20px;
+        }
+    </style>
     <main id="eol-login" aria-label="Content" tabindex="-1" class="w-100 mx-auto mt-0 pt-0" style="min-height: 85vh;">
         
+        <div style="visibility: hidden;" id="url_next">/uchileedxlogin/login/?${urlencode({'next':login_redirect_url})}</div>
+
         <div class="container my-0 py-0 px-2 mx-auto">
             <div class="row">
                 <div id="content-container" class="login-register-content login-card col-11 col-md-8 col-lg-6 mx-auto px-5">

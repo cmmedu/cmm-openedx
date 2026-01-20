@@ -4,13 +4,13 @@
 <%!
 from django.utils.translation import ugettext as _
 from django.urls import reverse
-
+from django.conf import settings
 from openedx.core.djangolib.markup import HTML, Text
+from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
 %>
-
 <style>
 	header.index {
-		background-image: url(${static.url('https://static.sumaysigue.uchile.cl/cmmeduformacion/produccion/assets/img/header.png')});
+		background-image: url(${static.url('cmm-openedx/images/headerPC.png')});
 	}
 
 </style>

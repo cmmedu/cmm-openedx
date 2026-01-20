@@ -24,6 +24,7 @@
 <% } %>
 
 <form id="login" class="login-form" tabindex="-1" method="POST">
+    <a id="redirect_to" href="/uchileedxlogin/login/?next=%2Fdashboard" class="login-button2" style="display: block; width: 100%; cursor: pointer; border: none; text-decoration: none;"></a>
     <div class="js-form-feedback mt-3" aria-live="assertive" tabindex="-1">
     </div>
     <div id="Login_Normal" class="login-providers" style="text-align: left;">
@@ -76,3 +77,15 @@
         <% } %>
     </div>
 </form>
+<script>
+    $( document ).ready(function() {
+        var urlNextElement = document.getElementById("url_next");
+        if (urlNextElement) {
+            var url = urlNextElement.textContent.trim();
+            var atag = document.getElementById("redirect_to");
+            if (atag && url) {
+                atag.setAttribute('href', url);
+            }
+        }
+    });
+</script>
