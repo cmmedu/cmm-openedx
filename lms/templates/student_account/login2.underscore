@@ -20,14 +20,20 @@
     </p>
     <p><%- gettext("To continue learning with this account, sign in below.") %></p>
 <% } else { %>
-    <h2><%- gettext("Sign In") %></h2>
+    <span class="login-header pb-2 mb-4"><%- gettext("Sign In") %></span>
 <% } %>
 
 <form id="login" class="login-form" tabindex="-1" method="POST">
-    <a id="redirect_to" href="/uchileedxlogin/login/?next=%2Fdashboard" class="login-button2" style="display: block; width: 100%; cursor: pointer; border: none; text-decoration: none;"></a>
+    <a id="redirect_to" href="/uchileedxlogin/login">
+        <img class="img-login-1 img-fluid"/>
+    </a>
+    <div id="login_separator" class="separator mx-5 my-3">O</div>
+    <a id="href_login_normal" href="#Login_Normal" onclick="return loginCorreo();">
+        <img class="img-login-2 img-fluid"/>
+    </a>
     <div class="js-form-feedback mt-3" aria-live="assertive" tabindex="-1">
     </div>
-    <div id="Login_Normal" class="login-providers" style="text-align: left;">
+    <div id="Login_Normal" class="login-providers" style="text-align: left;display: none;">
         <p class="sr">
             <% if ( context.providers.length > 0 && !context.currentProvider || context.hasSecondaryProviders ) { %>
                 <%- gettext("Sign in here using your email address and password, or use one of the providers listed below.") %>
@@ -78,14 +84,26 @@
     </div>
 </form>
 <script>
-    $( document ).ready(function() {
-        var urlNextElement = document.getElementById("url_next");
-        if (urlNextElement) {
-            var url = urlNextElement.textContent.trim();
-            var atag = document.getElementById("redirect_to");
-            if (atag && url) {
-                atag.setAttribute('href', url);
-            }
+    function loginCorreo() {
+        var x = document.getElementById("Login_Normal");
+        if (x.style.display === "none") {
+            $('#Login_Normal').show();
+        } else {
+            $('#Login_Normal').hide();
         }
+    }
+    $( document ).ready(function() {
+        $(".img-login-1").attr("src", IMG_LOGIN_1);
+        $(".img-login-2").attr("src", IMG_LOGIN_2);
+        if(window.location.href.includes("cuenta_eol")){
+            $('#Login_Normal').show();
+            $('#login_separator').hide();
+            $('#redirect_to').hide();
+            $('#href_login_normal').hide();
+        }
+        var url = document.getElementById("url_next").textContent;
+        var atag = document.getElementById("redirect_to");
+        atag.setAttribute('href', url)
+        document.getElementById("url_next").style.display = "none";
     });
 </script>
