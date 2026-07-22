@@ -183,7 +183,7 @@ from django.urls import reverse
   <div id="enroll-run-response-error" class="request-response-error"></div>
 </fieldset>
 %endif
-% if section_data['access']['admin']:
+% if section_data['access']['admin'] or section_data['access']['instructor']:
 <fieldset class="batch-enrollment membership-section">
   <legend id="heading-batch-enrollment" class="hd hd-3">${_("Batch Enrollment")}</legend>
   <label>
